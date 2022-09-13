@@ -8,44 +8,45 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.joseliza.bank.bootcoin.config.CacheConfig;
+import com.joseliza.bank.bootcoin.models.ExchangeRate;
 import com.joseliza.bank.bootcoin.models.WalletBootCoin;
+import com.joseliza.bank.bootcoin.repository.ExchangeRateRepository;
 import com.joseliza.bank.bootcoin.repository.WalletBootCoinRepository;
 
 @Service
-public class WalletBootCoinService implements IWalletBootCoinService {
+public class ExchangeRateService implements IExchangeRateService {
 	@Autowired
-	private WalletBootCoinRepository repository;
+	private ExchangeRateRepository repository;
 
 	@Override
-	public List<WalletBootCoin> findAll() {
+	public List<ExchangeRate> findAll() {
 		return repository.findAll();
 	}
 
 	@Override
-	public WalletBootCoin save(WalletBootCoin walletBootCoin) {
-		return repository.save(walletBootCoin);
+	public ExchangeRate save(ExchangeRate exchangeRate) {
+		return repository.save(exchangeRate);
 	}
 
 	@Override
-	public void delete(WalletBootCoin wallet) {
+	public void delete(ExchangeRate wallet) {
 		repository.delete(wallet);
 	}
 
 	@Override
-	public Optional<WalletBootCoin> findById(Long id) {
+	public Optional<ExchangeRate> findById(Long id) {
 		return repository.findById(id);
 	}
-
 	
 	@Override
     @Cacheable(cacheNames = CacheConfig.USER_CACHE, unless = "#result == null")
-	public WalletBootCoin findWalletById(Long id) {
+	public ExchangeRate findExchangeRateById(Long id) {
 		System.out.println("id"+id);
 		return repository.findById(id).orElse(null);
 	}
 
 	@Override
-	public WalletBootCoin update(WalletBootCoin wallet) {
+	public ExchangeRate update(ExchangeRate wallet) {
 		return repository.save(wallet);
 	}
 }

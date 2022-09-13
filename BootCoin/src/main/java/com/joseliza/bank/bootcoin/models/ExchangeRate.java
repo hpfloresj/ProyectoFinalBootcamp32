@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class EnchangeRate {
+public class ExchangeRate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

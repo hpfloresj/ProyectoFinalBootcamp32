@@ -1,12 +1,19 @@
 package com.joseliza.bank.bootcoin.models;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.Data;
 
 @Data
 @Entity
 public class TransactionBootCoin {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String customerBuyer; //comprador de bootcoin
 	private String customerSeller; //cliente vendedor de bootcoin
 	private float paymentAmount; //monto de pago

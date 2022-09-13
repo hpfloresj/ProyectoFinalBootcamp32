@@ -10,7 +10,6 @@ public interface IWalletBootCoinService {
 
 	    public List<WalletBootCoin> findAll();
 	    public Optional<WalletBootCoin> findById(Long id);
-	    public List<WalletBootCoin> findByNumdocument(String numdocument);
 	    public WalletBootCoin update(WalletBootCoin wallet);
 	    public WalletBootCoin save(WalletBootCoin wallet);
 	    public void delete(WalletBootCoin WwlletBootCoin);

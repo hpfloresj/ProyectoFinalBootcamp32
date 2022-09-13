@@ -34,20 +34,5 @@ public class CacheConfig extends CachingConfigurerSupport{
             .entryTtl(Duration.of(time, temporalUnit));
     }
 
-	/*
-	@Bean
-	public RedisCacheConfiguration cacheConfiguration() {
-		return RedisCacheConfiguration.defaultCacheConfig()
-				.entryTtl(Duration.ofMinutes(60))
-				.disableCachingNullValues()
-				.serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
-	}
-	
-	@Bean
-	public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
-		return (buider) -> buider
-				.withCacheConfiguration("walletCache", 
-						RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)));
-	}*/
 	
 }

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(name="walletbootcoin")
 public class WalletBootCoin implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

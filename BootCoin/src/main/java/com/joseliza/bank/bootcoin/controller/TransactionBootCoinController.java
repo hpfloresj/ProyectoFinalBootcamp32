@@ -14,44 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joseliza.bank.bootcoin.models.TransactionBootCoin;
 import com.joseliza.bank.bootcoin.models.WalletBootCoin;
+import com.joseliza.bank.bootcoin.service.ITransactionBootCoinService;
 import com.joseliza.bank.bootcoin.service.IWalletBootCoinService;
 
 
 @RestController
-@RequestMapping("/walletbootcoin")
-public class WalletBootCoinController {
+@RequestMapping("/transacion")
+public class TransactionBootCoinController {
 
 	@Autowired
-	IWalletBootCoinService service;
+	ITransactionBootCoinService service;
 
 	@GetMapping
-	public List<WalletBootCoin> listar(Model model) {
+	public List<TransactionBootCoin> listar(Model model) {
 		return service.findAll();
 	}
 
 	@GetMapping("/detail/{id}")
-	public Optional<WalletBootCoin> detail(@PathVariable Long id) {
+	public Optional<TransactionBootCoin> detail(@PathVariable Long id) {
 		return service.findById(id);
 	}
 
 	@PutMapping
-	public WalletBootCoin update(@RequestBody WalletBootCoin walletBootCoin) {
-		return service.update(walletBootCoin);
+	public TransactionBootCoin update(@RequestBody TransactionBootCoin transactionBootCoin) {
+		return service.update(transactionBootCoin);
 	}
 
 	@PostMapping
-	public WalletBootCoin create(@RequestBody WalletBootCoin walletBootCoin) {
-		return service.save(walletBootCoin);
+	public TransactionBootCoin create(@RequestBody TransactionBootCoin transactionBootCoin) {
+		return service.save(transactionBootCoin);
 	}
 	
 	@DeleteMapping
-	public void delete(@RequestBody WalletBootCoin walletBootCoin) {
-		service.delete(walletBootCoin);
+	public void delete(@RequestBody TransactionBootCoin transactionBootCoin) {
+		service.delete(transactionBootCoin);
 	}
 	
 	@GetMapping("/redisdetail/{id}")
-	public WalletBootCoin walletforDetail(@PathVariable Long id) {
-		return service.findWalletById(id);
+	public TransactionBootCoin findTransactionBootCoinById(@PathVariable Long id) {
+		return service.findTransactionBootCoinById(id);
 	}
 }

@@ -21,7 +21,7 @@ public class CacheConfig extends CachingConfigurerSupport{
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap();
-        redisCacheConfigurationMap.put(USER_CACHE, createConfig(5, ChronoUnit.MINUTES));
+        redisCacheConfigurationMap.put(USER_CACHE, createConfig(60, ChronoUnit.MINUTES));
 
         return RedisCacheManager
             .builder(redisConnectionFactory)

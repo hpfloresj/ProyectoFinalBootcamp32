@@ -16,20 +16,20 @@ import com.joseliza.bank.bootcoin.models.PurchaseRequest;
 
 
 @Configuration
-public class KafkaStringConfig {
-    public ProducerFactory<String, String> producerFactory() {
-        Map<String, Object> config = new HashMap();
+public class KafkaConfiguration {
+	
+    public ProducerFactory<String, PurchaseRequest> producerFactory() {
+        Map<String, Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        //config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         config.put(ProducerConfig.ACKS_CONFIG, "all");
-        return new DefaultKafkaProducerFactory(config);
+        return new DefaultKafkaProducerFactory<>(config);
     }
 
-    @Bean(name = "kafkaStringTemplate")
-    public KafkaTemplate<String, String> kafkaTemplate() {
-   //public KafkaTemplate<String, JsonSerializer<PurchaseRequest>> kafkaTemplate() {
+    @Bean
+    public KafkaTemplate<String, PurchaseRequest> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
+    
 }

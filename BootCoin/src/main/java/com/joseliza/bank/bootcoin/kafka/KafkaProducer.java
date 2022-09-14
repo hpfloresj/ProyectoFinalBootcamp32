@@ -17,24 +17,22 @@ import lombok.extern.slf4j.Slf4j;
 public class KafkaProducer {
 
 	@Autowired
-	//private KafkaTemplate<String, JsonSerializer<PurchaseRequest>> kafkaTemplate;
-	private KafkaTemplate<String, String> kafkaTemplate;
+	KafkaTemplate<String, PurchaseRequest> kafkaTemplate;
 	
 	private final String kafkaTopic = "tSolicitud";
 	
-	
+	/*
 	public void sendMessage(String message) {
 		log.info("Enviando una solicitud desde bootcoin {}", message);
 		System.out.println("Enviando una solicitud desde bootcoin " + message);
 		this.kafkaTemplate.send(kafkaTopic, message);
 	}
-	
-	
-	/*
-	public void sendMessage(PurchaseRequest message) {
-		log.info("Enviando una solicitud desde bootcoin {}", message.toString());
-		System.out.println("Enviando una solicitud desde bootcoin " + message.toString());
-		this.kafkaTemplate.send(kafkaTopic, message);
-	}
 	*/
+		
+	public void sendMessage(PurchaseRequest purchase) {
+		log.info("Enviando una solicitud desde bootcoin {}", purchase.toString());
+		System.out.println("Enviando una solicitud desde bootcoin " + purchase.toString());
+		this.kafkaTemplate.send(kafkaTopic, purchase);
+	}
+	
 }

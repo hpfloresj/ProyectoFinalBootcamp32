@@ -1,5 +1,6 @@
 package com.grupo04.account.service;
 
+import com.grupo04.account.kafka.KafkaProducer;
 import com.grupo04.account.models.Account;
 import com.grupo04.account.models.Card;
 import com.grupo04.account.models.CardList;
@@ -41,6 +42,9 @@ public class AccountService implements IAccountService {
 	@Autowired
 	private IAccountRepository accountRepository;
 
+	@Autowired
+	private KafkaProducer producer;
+
 	public AccountService(IAccountRepository accountRepository) {
 		this.accountRepository = accountRepository;
 	}
@@ -50,11 +54,12 @@ public class AccountService implements IAccountService {
 		log.info("prueba de findAll");
 		return accountRepository.findAll();
 	}
+
 	@Override
 	public Optional<Account> findById(Long id) {
 		return accountRepository.findById(id);
 	}
-	
+
 	@Override
 	public Optional<Account> findFirstByNumaccount(String numaccount) {
 		return accountRepository.findFirstByNumaccount(numaccount);
@@ -89,9 +94,11 @@ public class AccountService implements IAccountService {
 				return Optional.of(accountRepository.save(account));
 			}
 		}
-		
-		if(p.getId()!=null) {
-			return Optional.of(accountRepository.save(account));
+
+		if (p.getId() != null) {
+			Account a = accountRepository.save(account);
+			producer.sendMessage(a.toString());
+			return Optional.of(a);
 		}
 
 		return Optional.of(null);

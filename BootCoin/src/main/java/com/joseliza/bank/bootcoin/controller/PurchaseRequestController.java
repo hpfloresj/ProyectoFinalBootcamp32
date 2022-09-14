@@ -57,7 +57,7 @@ public class PurchaseRequestController {
 
 	@PostMapping("/solicitar")
 	public ResponseEntity<Map<String, Object>> create(@RequestBody PurchaseRequest purchaseRequest) {
-		/*Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("Transaccion", "Solicitud");
 		result.put("mensaje", "Solicitud enviada para evaluación");
 		PurchaseRequest purchasesave = service.save(purchaseRequest);
@@ -65,8 +65,7 @@ public class PurchaseRequestController {
 		producer.sendMessage(purchasesave.toString());
 		return ResponseEntity.created(URI.create("/compra/buscarporid/".concat(purchasesave.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(result);
-*/
-		return null;
+
 	}
 
 }

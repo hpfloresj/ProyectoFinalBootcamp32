@@ -18,8 +18,8 @@ zookeeper-server-start.bat C:\kafka\config\zookeeper.properties
 
 kafka-server-start.bat C:\kafka\config\server.properties
 
-kafka-topics.bat --bootstrap-server localhost:9092 --create --topic tbootcoin --partitions 2 --replication-factor 1
+kafka-topics.bat --bootstrap-server localhost:9092 --create --topic tAccountProductos --partitions 2 --replication-factor 1
 
-kafka-console-producer.bat --broker-list localhost:9092 --topic tbootcoin
+kafka-console-producer.bat --broker-list localhost:9092 --topic tAccountProductos
 
-kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic tbootcoin 
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic tAccountProductos

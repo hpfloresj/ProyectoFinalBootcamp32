@@ -32,7 +32,6 @@ class CurrentAccountServiceTest {
 				new Account(2L, "ca", "124","345435436", "personal", false, 5, 20, LocalDate.of(2022, 01, 02), LocalDate.of(2022, 01, 02), 1500f),
 				new Account(1L, "ca", "125","345435437", "personal", false, 5, 20, LocalDate.of(2022, 01, 01), LocalDate.of(2022, 01, 03), 1600f),
 				new Account(2L, "ca", "126","345435438", "personal", false, 5, 20, LocalDate.of(2022, 01, 02), LocalDate.of(2022, 01, 04), 1700f));
-
 	}
 	
 	@Test

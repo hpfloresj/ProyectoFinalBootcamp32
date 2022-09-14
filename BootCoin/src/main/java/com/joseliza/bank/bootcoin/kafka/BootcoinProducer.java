@@ -17,9 +17,9 @@ public class BootcoinProducer {
 		this.kafkaTemplate = kafkaTemplate;
 	}
 
-	public void sendMessage(String message) {
+	public void sendMessage(String key, String message) {
 		log.info("Producing message {}", message);
-		this.kafkaTemplate.send("tTransaction", message);
+		this.kafkaTemplate.send(key, message);
 	}
 
 	/*

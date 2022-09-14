@@ -17,6 +17,6 @@ public class KafkaStringProducer {
 
     public void sendMessage(String message) {
         log.info("Producing message {}", message);
-        this.kafkaTemplate.send("tTransaction", message);
+        this.kafkaTemplate.send("tbootcoin", message);
     }
 }

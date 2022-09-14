@@ -5,3 +5,4 @@ INSERT INTO tipocambio(monedaorigen,monedadestino,preciocompra,precioventa,fecha
 INSERT INTO tipocambio(monedaorigen,monedadestino,preciocompra,precioventa,fecha) VALUES('bootcoin','soles', 2.56, 2.70, '05-09-2022');
 INSERT INTO tipocambio(monedaorigen,monedadestino,preciocompra,precioventa,fecha) VALUES('bootcoin','soles', 2.50, 2.60, '06-09-2022');
 INSERT INTO walletbootcoin(numdocument,cell,email,accountid,amountavailable) VALUES('123456789','936268194','correo01@gmail.com','', 10);
+INSERT INTO solicitudcompra(montopago,mediopago,numerocuenta,celular) VALUES(100,'yanki','','936268194');

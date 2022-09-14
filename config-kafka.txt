@@ -44,9 +44,9 @@ dataDir=F:/kafka_2.12-3.1.1/zookeeper-data
 
 ### Topic: bootcamp-topic
 
-.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic bootcamp-topic
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic tbootcoin
 
-.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic bootcamp-topic
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic tbootcoin 
 
 ### Topic: TOPIC-DEMO
 

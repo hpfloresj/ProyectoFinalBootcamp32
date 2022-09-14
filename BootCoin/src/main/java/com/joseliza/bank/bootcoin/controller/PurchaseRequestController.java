@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joseliza.bank.bootcoin.kafka.BootcoinProducer;
+import com.joseliza.bank.bootcoin.kafka.KafkaProducer;
 import com.joseliza.bank.bootcoin.models.PurchaseRequest;
 import com.joseliza.bank.bootcoin.service.PurchaseRequestService;
 
@@ -25,12 +26,12 @@ import com.joseliza.bank.bootcoin.service.PurchaseRequestService;
 @RequestMapping("/compra")
 public class PurchaseRequestController {
 
-	private final BootcoinProducer producer;
+	private final KafkaProducer producer;
 
 	@Autowired
 	PurchaseRequestService service;
 
-	public PurchaseRequestController(BootcoinProducer producer) {
+	public PurchaseRequestController(KafkaProducer producer) {
 		this.producer = producer;
 	}
 
@@ -56,15 +57,16 @@ public class PurchaseRequestController {
 
 	@PostMapping("/solicitar")
 	public ResponseEntity<Map<String, Object>> create(@RequestBody PurchaseRequest purchaseRequest) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		/*Map<String, Object> result = new HashMap<String, Object>();
 		result.put("Transaccion", "Solicitud");
 		result.put("mensaje", "Solicitud enviada para evaluación");
 		PurchaseRequest purchasesave = service.save(purchaseRequest);
 		result.put("solicitud", purchasesave.toString());
-		producer.sendMessage(purchasesave.getId().toString(),purchasesave.toString());
+		producer.sendMessage(purchasesave.toString());
 		return ResponseEntity.created(URI.create("/compra/buscarporid/".concat(purchasesave.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(result);
-
+*/
+		return null;
 	}
 
 }

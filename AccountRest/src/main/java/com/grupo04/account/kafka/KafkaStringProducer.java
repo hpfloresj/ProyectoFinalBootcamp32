@@ -1,4 +1,4 @@
-package com.joseliza.bank.bootcoin.kafka;
+package com.grupo04.account.kafka;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;

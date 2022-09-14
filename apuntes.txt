@@ -1,42 +1,25 @@
-Proyecto final
-
-Crear proyecto EurekaServer
-------------------------------
-paquetes: 
-devtools, jaxb, eureka-server
-------------------------------
-application.properties
-spring.application.name=service-eureka
-server.port=20100
-eureka.client.register-with-eureka=false
-eureka.client.fetch-registry=false
-========================================
-Crear proyecto ConfigServer
-------------------------------
-paquetes: 
-devtools, jaxb, eureka-server
-------------------------------
-application.properties
-spring.application.name=service-config
-server.port=20110
-spring.cloud.config.server.git.clone-on-start=false
-spring.cloud.config.server.git.uri=https://github.com/joselizagaravito/ConfigServerProyectoFinal
-eureka.client.service-url.defaultZone=http://localhost:20100/eureka
-=======================================
-Crear proyecto CustomerApi
+Producer:Transaction
+Key:123489
+Value: {nummonedero:963852,typetransaction:ingreso,amount:200}
+Topic: tTransaction
+Group:Monedero
 -----------------------------
-paquetes:
-lombok, devtools, validation, data-mongodb-reactive, cloud-starter, cloud-config-client, cloud-eureka, webflux
-------------------------------
-application.properties:
-spring.application.name=service-customer
-
-bootstrap.properties:
-spring.application.name=service-customer
-spring.cloud.config.uri=http://localhost:9080
+Consumer: Monedero
+Group:Monedero
+Topic: tTransaction
+.....
+Ingreso: Agregar al Saldo
+Egreso: Restar del saldo
+Actualizar en BD y Redis
 -----------------------------
-Crear redis
-usuario: redis
-password: redis
+-----------------------------
+Kafka comandos basicos
+zookeeper-server-start.bat C:\kafka\config\zookeeper.properties
 
+kafka-server-start.bat C:\kafka\config\server.properties
 
+kafka-topics.bat --bootstrap-server localhost:9092 --create --topic tbootcoin --partitions 2 --replication-factor 1
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic tbootcoin
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic tbootcoin 

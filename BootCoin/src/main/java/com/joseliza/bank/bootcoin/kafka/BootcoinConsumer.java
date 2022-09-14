@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BootcoinConsumer {
 	
     //@KafkaListener(topics = "${events.topic.input.pattern}", groupId = "group_id")
-    @KafkaListener(topics = "tUsuarioVendedor", groupId = "group01")
-    public void consume(String producto) throws IOException {
-        log.info(String.format("#### CONSUMER ##### -> Consumed message -> %s", producto));
+    @KafkaListener(topics = "tbootcoin", groupId = "group01")
+    public void consume(String solicitud) throws IOException {
+        log.info(String.format("#### CONSUMER ##### -> Consumed message -> %s", solicitud));
     }
 }

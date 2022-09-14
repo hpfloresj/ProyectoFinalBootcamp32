@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class BootcoinProducer {
-	private static final String TOPIC = "tSolicitudCompra";
+	private static final String TOPIC = "tbootcoin";
 	private final KafkaTemplate<String, String> kafkaTemplate;
 
 	public BootcoinProducer(@Qualifier("kafkaStringTemplate") KafkaTemplate<String, String> kafkaTemplate) {

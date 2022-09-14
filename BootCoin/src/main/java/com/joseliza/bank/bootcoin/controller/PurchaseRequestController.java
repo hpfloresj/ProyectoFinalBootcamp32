@@ -60,6 +60,7 @@ public class PurchaseRequestController {
 		result.put("Transaccion", "Solicitud");
 		result.put("mensaje", "Solicitud enviada para evaluación");
 		PurchaseRequest purchasesave = service.save(purchaseRequest);
+		result.put("solicitud", purchasesave.toString());
 		producer.sendMessage(purchasesave.getId().toString(),purchasesave.toString());
 		return ResponseEntity.created(URI.create("/compra/buscarporid/".concat(purchasesave.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(result);

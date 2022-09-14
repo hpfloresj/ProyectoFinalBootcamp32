@@ -32,7 +32,6 @@ public class PurchaseRequest {
 	@Column(name = "numerocuenta")
 	private String numaccount; // numero de cuenta de ahorros
 	
-	@Pattern(regexp = "^ 1 (3 | 4 | 5 | 7 | 8) \\ d {9} $", message = "Error de formato de número de teléfono móvil")
 	@Column(name = "celular")
 	private String cell; // numero de cuenta de ahorros
 }

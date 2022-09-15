@@ -13,11 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 public class KafkaProducer {
 
 	@Autowired
-	KafkaTemplate<String, PurchaseRequest> kafkaTemplate;
+	KafkaTemplate<String, String> kafkaTemplate;
 	
 	private final String kafkaTopic = "tTransaction";
 	
-	public void sendMessage(PurchaseRequest purchase) {
+	public void sendMessage(String purchase) {
 		log.info("Enviando una solicitud desde customer {}", purchase.toString());
 		System.out.println("Enviando una solicitud desde customer " + purchase.toString());
 		this.kafkaTemplate.send(kafkaTopic, purchase);

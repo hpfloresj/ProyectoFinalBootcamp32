@@ -24,10 +24,10 @@ public class PurchaseRestController {
 	private static final Logger log = LoggerFactory.getLogger(PurchaseRestController.class);
 	@Autowired
 	private IPurchaseService service;
-	
+
 	@Autowired
 	private KafkaProducer producer;
-	
+
 	@GetMapping
 	public Flux<PurchaseRequest> listar(Model model) {
 		log.info("lista de solicitudes de compra");
@@ -48,14 +48,16 @@ public class PurchaseRestController {
 
 	@PutMapping("/aceptarintercambio/{id}")
 	public Mono<ResponseEntity<PurchaseRequest>> edit(@RequestBody PurchaseRequest purchase, @PathVariable String id) {
+		// Se genera nuevo numero de transaccion
+		purchase.setNumtransaction(LocalDate.now().getYear() * 1000000 + LocalDate.now().getMonthValue() * 10000
+				+ LocalDate.now().getDayOfMonth() * 100 + id);
+		producer.sendMessage(purchase.toString());
+		System.out.println("Actualizando solicitud desde customer " + purchase.toString());
 		return service.findById(id).flatMap(p -> {
-			//Se genera nuevo numero de transaccion
-			purchase.setNumtransaction(LocalDate.now().getYear() * 1000000 + LocalDate.now().getMonthValue() * 10000
-					+ LocalDate.now().getDayOfMonth() * 100 + id);
-			producer.sendMessage(purchase);
 			return service.save(purchase);
 		}).map(p -> ResponseEntity.created(URI.create("/api/purchasepequest".concat(p.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(p)).defaultIfEmpty(ResponseEntity.notFound().build());
+
 	}
 
 	@DeleteMapping("/{id}")

@@ -37,7 +37,7 @@ public class PurchaseRequestController {
 	}
 
 	@GetMapping
-	public List<PurchaseRequest> listar(Model model) {
+	public List<PurchaseRequest> listar() {
 		return service.findAll();
 	}
 
@@ -59,8 +59,6 @@ public class PurchaseRequestController {
 	@PostMapping("/solicitar")
 	public ResponseEntity<Map<String, Object>> create(@RequestBody PurchaseRequest purchaseRequest) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		purchaseRequest.setUpdatedAt(LocalDate.now());
-		purchaseRequest.setCreatedAt(LocalDate.now());
 		result.put("Transaccion", "Solicitud");
 		result.put("mensaje", "Solicitud enviada para evaluación");
 		PurchaseRequest purchasesave = service.save(purchaseRequest);

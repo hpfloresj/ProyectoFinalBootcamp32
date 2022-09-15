@@ -13,10 +13,14 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "solicitudcompra")
 @Builder(toBuilder = true)
 public class PurchaseRequest {
@@ -40,11 +44,4 @@ public class PurchaseRequest {
 	
 	@Column(name = "celular")
 	private String cell; // numero de cuenta de ahorros
-	
-    @CreatedDate
-    private LocalDate createdAt = LocalDate.now();
-    
-    @LastModifiedDate
-    private LocalDate updatedAt= LocalDate.now();
-
-}
+	}

@@ -79,10 +79,8 @@ public class CustomerApplication implements CommandLineRunner {
 
 		mongoTemplate.dropCollection("purchase").subscribe();
 		Flux.just(
-				new PurchaseRequest(Long.valueOf(1001), "", Float.valueOf(120), "ya", "20220818001", "",
-						LocalDate.of(2020, Month.JULY, 21), LocalDate.now()),
-				new PurchaseRequest(Long.valueOf(1002), "", Float.valueOf(120), "ca", "", "98765432",
-						LocalDate.of(2020, Month.JULY, 21), LocalDate.now()))
+				new PurchaseRequest("1001", "", Float.valueOf(120), "ya", "20220818001", ""),
+				new PurchaseRequest("1002", "", Float.valueOf(120), "ca", "", "98765432"))
 				.flatMap(p -> {
 					return purchaserepository.save(p);
 				}).subscribe(p -> log.info("Insert: " + p.toString()));

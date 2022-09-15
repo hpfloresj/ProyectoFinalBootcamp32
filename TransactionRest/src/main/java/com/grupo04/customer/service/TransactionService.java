@@ -1,6 +1,5 @@
 package com.grupo04.customer.service;
 
-import com.grupo04.customer.kafka.TransactionProducer;
 import com.grupo04.customer.models.Account;
 import com.grupo04.customer.models.Card;
 import com.grupo04.customer.models.ResponseAccounts;
@@ -29,8 +28,6 @@ public class TransactionService implements ITransactionService {
 
 	private final WebClient webClient;
 
-	//@Autowired
-	private final TransactionProducer producer;
 
 	@Value("${account.url}")
 	private String urlAccount;
@@ -38,8 +35,7 @@ public class TransactionService implements ITransactionService {
 	@Value("${card.url}")
 	private String urlc;
 
-	public TransactionService(WebClient.Builder webBuilder, TransactionProducer producer) {
-		this.producer=producer;
+	public TransactionService(WebClient.Builder webBuilder) {
 		this.webClient = webBuilder.baseUrl("http://localhost:9040/card/").build();
 	}
 
@@ -56,7 +52,6 @@ public class TransactionService implements ITransactionService {
 	@Override
 	public Mono<Transaction> save(Transaction transaction) {
 
-		producer.sendMessage("primera linea ");
 		ResponseAccounts responseAccount = getAccount(transaction.getSourceAccount());
 		System.out.println("valor de responseAccount: " + responseAccount);
 
@@ -90,7 +85,7 @@ public class TransactionService implements ITransactionService {
 				transaction.setDate(LocalDateTime.now());
 				Mono<Transaction> result = repository.save(transaction);
 				System.out.println("result: " + result);
-				producer.sendMessage("para transaction");
+				//producer.sendMessage("para transaction");
 				return result;
 			}
 		}

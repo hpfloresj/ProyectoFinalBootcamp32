@@ -20,4 +20,5 @@ public class KafkaProducer {
 		log.info("Producing message from account {}", message);
 		this.kafkaTemplate.send(kafkaTopic, message);
 	}
+	
 }

@@ -18,7 +18,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import com.grupo04.customer.models.PurchaseRequest;
 
-public class KafkaConfiguration {
+public class KafkaConfigurationConsumer {
 	@Bean
 	public ConsumerFactory<String, PurchaseRequest> consumerFactoryJson() {
 		Map<String, Object> config = new HashMap<>();

@@ -77,7 +77,7 @@ public class PersonalRestController {
     @PutMapping("/{id}")
     public Mono<ResponseEntity<CustomerPersonal>> edit(@RequestBody CustomerPersonal customer, @PathVariable String id) {
         return service.findById(id).flatMap(p -> {
-                    return service.save(p);
+                    return service.save(customer);
                 }).map(p -> ResponseEntity.created(URI.create("/api/customerpersonal".concat(p.getId())))
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(p))

@@ -1,11 +1,9 @@
 package com.joseliza.bank.bootcoin.service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import com.joseliza.bank.bootcoin.models.ExchangeRate;
-import com.joseliza.bank.bootcoin.models.WalletBootCoin;
 
 
 public interface IExchangeRateService {

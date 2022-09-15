@@ -1,4 +1,4 @@
-package com.joseliza.bank.bootcoin.kafka;
+package com.grupo04.customer.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +12,10 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.joseliza.bank.bootcoin.models.PurchaseRequest;
+import com.grupo04.customer.models.PurchaseRequest;
 
 @Configuration
-public class KafkaConfiguration {
+public class KafkaConfigurationProducer {
 	
     public ProducerFactory<String, PurchaseRequest> producerFactory() {
         Map<String, Object> config = new HashMap<>();

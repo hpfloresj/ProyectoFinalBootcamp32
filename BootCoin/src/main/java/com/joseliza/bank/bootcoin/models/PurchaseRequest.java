@@ -1,25 +1,31 @@
 package com.joseliza.bank.bootcoin.models;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.Builder;
 import lombok.Data;
 
-/*solicitud de compra
- * */
 @Data
 @Entity(name = "solicitudcompra")
+@Builder(toBuilder = true)
 public class PurchaseRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "numtransaccion")
+	private String numtransaction;
 	
     @Range(min = 1, message = "Ingrese un monto valido")
 	@Column(name = "montopago")
@@ -34,4 +40,11 @@ public class PurchaseRequest {
 	
 	@Column(name = "celular")
 	private String cell; // numero de cuenta de ahorros
+	
+    @CreatedDate
+    private LocalDate createdAt = LocalDate.now();
+    
+    @LastModifiedDate
+    private LocalDate updatedAt= LocalDate.now();
+
 }

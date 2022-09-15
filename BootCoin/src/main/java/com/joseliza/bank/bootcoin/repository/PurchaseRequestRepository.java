@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.joseliza.bank.bootcoin.models.PurchaseRequest;
-import com.joseliza.bank.bootcoin.models.WalletBootCoin;
 
 public interface PurchaseRequestRepository extends JpaRepository<PurchaseRequest, Long>{
 	public List<PurchaseRequest> findByNumaccount(String numaccount);

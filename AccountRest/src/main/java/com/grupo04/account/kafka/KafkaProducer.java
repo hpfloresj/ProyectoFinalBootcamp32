@@ -14,7 +14,7 @@ public class KafkaProducer {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
-	private final String kafkaTopic = "tAccountProductos";
+	private final String kafkaTopic = "tValidacion";
 
 	public void sendMessage(String message) {
 		log.info("Producing message from account {}", message);

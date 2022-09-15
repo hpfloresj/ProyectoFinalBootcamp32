@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class AccountProducer {
-	private static final String TOPIC = "tAccountProductos";
+	private static final String TOPIC = "tValidacion";
 	
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;

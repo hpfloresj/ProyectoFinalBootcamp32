@@ -2,8 +2,11 @@ package com.grupo04.customer;
 
 import com.grupo04.customer.models.CustomerBusiness;
 import com.grupo04.customer.models.CustomerPersonal;
+import com.grupo04.customer.models.PurchaseRequest;
 import com.grupo04.customer.repository.CustomerBusinessRepository;
 import com.grupo04.customer.repository.CustomerPersonalRepository;
+import com.grupo04.customer.repository.PurchaseRepository;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,10 +23,16 @@ import java.time.Month;
 @SpringBootApplication
 @Slf4j
 public class CustomerApplication implements CommandLineRunner {
+
 	@Autowired
 	private CustomerPersonalRepository repositorycp;
+
 	@Autowired
 	private CustomerBusinessRepository repositorycb;
+
+	@Autowired
+	private PurchaseRepository purchaserepository;
+
 	@Autowired
 	private ReactiveMongoTemplate mongoTemplate;
 
@@ -66,6 +75,16 @@ public class CustomerApplication implements CommandLineRunner {
 						LocalDate.of(2019, Month.JULY, 20), LocalDate.now()))
 				.flatMap(p -> {
 					return repositorycb.save(p);
+				}).subscribe(p -> log.info("Insert: " + p.toString()));
+
+		mongoTemplate.dropCollection("purchase").subscribe();
+		Flux.just(
+				new PurchaseRequest(Long.valueOf(1001), "", Float.valueOf(120), "ya", "20220818001", "",
+						LocalDate.of(2020, Month.JULY, 21), LocalDate.now()),
+				new PurchaseRequest(Long.valueOf(1002), "", Float.valueOf(120), "ca", "", "98765432",
+						LocalDate.of(2020, Month.JULY, 21), LocalDate.now()))
+				.flatMap(p -> {
+					return purchaserepository.save(p);
 				}).subscribe(p -> log.info("Insert: " + p.toString()));
 	}
 }

@@ -1,6 +1,7 @@
 package com.joseliza.bank.bootcoin.controller;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,15 +59,16 @@ public class PurchaseRequestController {
 	@PostMapping("/solicitar")
 	public ResponseEntity<Map<String, Object>> create(@RequestBody PurchaseRequest purchaseRequest) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		purchaseRequest.setUpdatedAt(LocalDate.now());
+		purchaseRequest.setCreatedAt(LocalDate.now());
 		result.put("Transaccion", "Solicitud");
 		result.put("mensaje", "Solicitud enviada para evaluación");
 		PurchaseRequest purchasesave = service.save(purchaseRequest);
 		result.put("solicitud", purchasesave.toString());
 		producer.sendMessage(purchasesave);
-		//producer.sendMessage(purchasesave.toString());
+		System.out.println("Enviando purchaserequest desde Bootcoin: " + purchasesave);
 		return ResponseEntity.created(URI.create("/compra/buscarporid/".concat(purchasesave.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(result);
-
 	}
 
 }

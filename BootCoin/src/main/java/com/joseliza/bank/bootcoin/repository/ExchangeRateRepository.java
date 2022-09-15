@@ -1,7 +1,5 @@
 package com.joseliza.bank.bootcoin.repository;
 
-
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

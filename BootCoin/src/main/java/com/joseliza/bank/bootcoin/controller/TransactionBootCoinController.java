@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joseliza.bank.bootcoin.models.TransactionBootCoin;
-import com.joseliza.bank.bootcoin.models.WalletBootCoin;
 import com.joseliza.bank.bootcoin.service.ITransactionBootCoinService;
-import com.joseliza.bank.bootcoin.service.IWalletBootCoinService;
 
 
 @RestController

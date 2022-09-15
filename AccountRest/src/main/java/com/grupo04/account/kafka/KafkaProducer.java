@@ -14,11 +14,11 @@ public class KafkaProducer {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
-	private final String kafkaTopic = "tValidacion";
+	//private final String kafkaTopic = "tValidacion";
 
-	public void sendMessage(String message) {
+	public void sendMessage(String topic, String message) {
 		log.info("Producing message from account {}", message);
-		this.kafkaTemplate.send(kafkaTopic, message);
+		this.kafkaTemplate.send(topic, message);
 	}
-	
+
 }

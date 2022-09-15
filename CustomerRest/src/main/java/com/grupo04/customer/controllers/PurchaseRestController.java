@@ -51,13 +51,12 @@ public class PurchaseRestController {
 		// Se genera nuevo numero de transaccion
 		purchase.setNumtransaction(LocalDate.now().getYear() * 1000000 + LocalDate.now().getMonthValue() * 10000
 				+ LocalDate.now().getDayOfMonth() * 100 + id);
-		producer.sendMessage(purchase.toString());
+		producer.sendMessage("tTransaction",purchase.toString());
 		System.out.println("Actualizando solicitud desde customer " + purchase.toString());
 		return service.findById(id).flatMap(p -> {
 			return service.save(purchase);
 		}).map(p -> ResponseEntity.created(URI.create("/api/purchasepequest".concat(p.getId().toString())))
 				.contentType(MediaType.APPLICATION_JSON).body(p)).defaultIfEmpty(ResponseEntity.notFound().build());
-
 	}
 
 	@DeleteMapping("/{id}")

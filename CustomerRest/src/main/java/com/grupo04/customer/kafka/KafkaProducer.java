@@ -15,12 +15,12 @@ public class KafkaProducer {
 	@Autowired
 	KafkaTemplate<String, String> kafkaTemplate;
 	
-	private final String kafkaTopic = "tOrdenPago";
+	//private final String kafkaTopic = "tOrdenPago";
 	
-	public void sendMessage(String purchase) {
+	public void sendMessage(String topic, String purchase) {
 		log.info("Enviando orden de pago {}", purchase.toString());
 		System.out.println("Enviando orden de pago " + purchase.toString());
-		this.kafkaTemplate.send(kafkaTopic, purchase);
+		this.kafkaTemplate.send(topic, purchase);
 	}
 	
 }

@@ -18,9 +18,9 @@ public class KafkaConsumer {
 	
 	@KafkaListener(topics = "tTransaction", groupId = "group01", containerFactory = "purchaseRequestListener")
 	public void consume(String message) {
-		System.out.println("Consumiendo desde Account string: " + message);
+		System.out.println("Consumiendo desde tTransaction string: " + message);
 		//Validar si tiene cuenta en el banco
 
-		producer.sendMessage(validation.toString());
+		producer.sendMessage("tValidacion", validation.toString());
 	}
 }

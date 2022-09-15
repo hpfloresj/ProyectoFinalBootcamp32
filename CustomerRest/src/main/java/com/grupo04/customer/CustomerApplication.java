@@ -77,7 +77,7 @@ public class CustomerApplication implements CommandLineRunner {
 					return repositorycb.save(p);
 				}).subscribe(p -> log.info("Insert: " + p.toString()));
 
-		mongoTemplate.dropCollection("purchase").subscribe();
+		mongoTemplate.dropCollection("solicitudes").subscribe();
 		Flux.just(
 				new PurchaseRequest("1001", "", Float.valueOf(120), "ya", "20220818001", ""),
 				new PurchaseRequest("1002", "", Float.valueOf(120), "ca", "", "98765432"))

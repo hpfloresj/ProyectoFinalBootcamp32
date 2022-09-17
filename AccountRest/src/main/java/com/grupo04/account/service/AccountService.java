@@ -6,7 +6,6 @@ import com.grupo04.account.models.Card;
 import com.grupo04.account.models.CardList;
 import com.grupo04.account.models.CustomerBusiness;
 import com.grupo04.account.models.CustomerPersonal;
-import com.grupo04.account.models.ResponseAccounts;
 import com.grupo04.account.models.ResponseProducts;
 import com.grupo04.account.repository.IAccountRepository;
 
@@ -20,8 +19,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
-
-import javax.websocket.EncodeException;
 
 @Service
 @Slf4j
@@ -85,6 +82,7 @@ public class AccountService implements IAccountService {
 
 		// si es business o pyme
 		if (b.getId() != null) {
+			@SuppressWarnings("unchecked")
 			List<Card> listCard = clientRest.getForObject(urlc.concat(b.getRuc()), List.class);
 			boolean haveCreditCard = listCard.stream().filter(card -> card.getTypecard().equalsIgnoreCase("c"))
 					.count() > 0;

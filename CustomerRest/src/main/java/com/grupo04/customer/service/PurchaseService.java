@@ -1,8 +1,6 @@
 package com.grupo04.customer.service;
 
-import com.grupo04.customer.models.CustomerBusiness;
 import com.grupo04.customer.models.PurchaseRequest;
-import com.grupo04.customer.repository.CustomerBusinessRepository;
 import com.grupo04.customer.repository.PurchaseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
